@@ -1,8 +1,12 @@
 import axios from 'axios'
 import { ElMessage } from 'element-plus'
 
+const baseURL =
+  import.meta.env.VITE_API_BASE_URL ||
+  (import.meta.env.PROD ? '/api' : 'http://localhost:3000')
+
 const service = axios.create({
-  baseURL: 'http://localhost:3000',
+  baseURL,
   timeout: 5000,
 })
 
