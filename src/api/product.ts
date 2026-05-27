@@ -4,6 +4,9 @@ export type Product = {
   id: number
   name: string
   price: number
+  category?: string
+  categoryLabel?: string
+  image?: string
 }
 
 export const getProductList = async (params: {
@@ -32,7 +35,13 @@ export const getProductList = async (params: {
   }
 }
 
-export const addProduct = (data: { name: string; price: number | string }) => {
+export const addProduct = (data: {
+  name: string
+  price: number | string
+  category?: string
+  categoryLabel?: string
+  image?: string
+}) => {
   return request.post('/?path=products-add', data) as Promise<Product>
 }
 

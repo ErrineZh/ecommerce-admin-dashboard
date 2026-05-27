@@ -1,14 +1,11 @@
 <template>
-  <div class="login-container">
-    <el-card class="login-card">
-      <h2>Login</h2>
+  <div class="login-page">
+    <section class="login-card">
+      <div class="brand">Loopi Handmade<span>.</span></div>
+      <h1>Welcome back</h1>
+      <p class="subtitle">Sign in to manage your store dashboard.</p>
 
-      <el-form
-        :model="form"
-        :rules="rules"
-        ref="formRef"
-        label-position="top"
-      >
+      <el-form ref="formRef" :model="form" :rules="rules" label-position="top">
         <el-form-item label="Username" prop="username">
           <el-input v-model="form.username" placeholder="Enter username" />
         </el-form-item>
@@ -18,19 +15,15 @@
             v-model="form.password"
             type="password"
             placeholder="Enter password"
+            show-password
           />
         </el-form-item>
 
-        <el-button
-          type="primary"
-          style="width: 100%"
-          :loading="loading"
-          @click="handleLogin"
-        >
+        <el-button class="login-button" type="primary" :loading="loading" @click="handleLogin">
           Login
         </el-button>
       </el-form>
-    </el-card>
+    </section>
   </div>
 </template>
 
@@ -64,7 +57,7 @@ const handleLogin = () => {
       const res = await loginApi(form)
       localStorage.setItem('token', res.token)
       localStorage.setItem('role', res.role)
-
+      localStorage.setItem('username', form.username || 'Alex')
       router.push('/')
     } catch (err: any) {
       alert(err.message)
@@ -73,20 +66,55 @@ const handleLogin = () => {
     }
   })
 }
-
-
 </script>
 
 <style scoped>
-.login-container {
-  height: 100vh;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  background: #f5f7fa;
+.login-page {
+  display: grid;
+  min-height: 100vh;
+  place-items: center;
+  padding: 24px;
+  background: #f7f8fc;
 }
 
 .login-card {
-  width: 350px;
+  width: min(430px, 100%);
+  padding: 43px 44px 47px;
+  border: 1px solid #e9edf5;
+  border-radius: 16px;
+  background: #fff;
+  box-shadow: 0 16px 44px rgba(19, 34, 68, 0.07);
+}
+
+.brand {
+  margin-bottom: 38px;
+  color: #101c3e;
+  font-size: 26px;
+  font-weight: 700;
+  letter-spacing: -1px;
+}
+
+.brand span {
+  color: #7058ff;
+}
+
+h1 {
+  margin: 0 0 9px;
+  color: #111b39;
+  font-size: 27px;
+  font-weight: 600;
+  letter-spacing: -0.6px;
+}
+
+.subtitle {
+  margin: 0 0 30px;
+  color: #697792;
+  font-size: 14px;
+}
+
+.login-button {
+  width: 100%;
+  height: 42px;
+  margin-top: 12px;
 }
 </style>

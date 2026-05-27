@@ -1,8 +1,8 @@
 let mockOrders = [
-  { id: '001', user: 'John', amount: 120, status: 'Paid' },
-  { id: '002', user: 'Alice', amount: 80, status: 'Pending' },
-  { id: '003', user: 'Bob', amount: 200, status: 'Shipped' },
-  { id: '004', user: 'Tom', amount: 60, status: 'Paid' },
+  { id: '001', user: 'John', product: 'Daisy Hair Clip', amount: 12.9, status: 'Paid' },
+  { id: '002', user: 'Alice', product: 'Sweet Duo Gift Set', amount: 28, status: 'Pending' },
+  { id: '003', user: 'Bob', product: 'Blossom Scrunchie', amount: 14.9, status: 'Shipped' },
+  { id: '004', user: 'Tom', product: 'Full Collection Set', amount: 52, status: 'Paid' },
 ]
 
 export const getOrderList = (params: {
