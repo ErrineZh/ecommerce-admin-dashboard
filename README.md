@@ -1,27 +1,50 @@
 # Ecommerce Admin Dashboard
 
-A Vue 3 + TypeScript admin dashboard for a simple ecommerce management demo. The project includes authentication, product management, order views, charts, and a lightweight API layer for deployment on Vercel.
+<div align="center">
 
-## Features
+Production-style ecommerce admin dashboard built with Vue 3, TypeScript, Element Plus, Pinia, Axios, ECharts, and a Vercel serverless mock API.
 
-- Login flow with mock authentication
-- Dashboard overview with charts
-- Product list with search, pagination, create, update, and delete actions
-- Order management view
-- Vue Router and Pinia based app structure
-- Vercel serverless API for online demo support
+[![Live Demo](https://img.shields.io/badge/Live%20Demo-ecommerce--admin--dashboard-111827?style=for-the-badge)](https://ecommerce-admin-dashboard-neon.vercel.app)
+[![Vue 3](https://img.shields.io/badge/Vue%203-42b883?style=for-the-badge&logo=vuedotjs&logoColor=white)](https://vuejs.org/)
+[![TypeScript](https://img.shields.io/badge/TypeScript-3178c6?style=for-the-badge&logo=typescript&logoColor=white)](https://www.typescriptlang.org/)
+[![Vite](https://img.shields.io/badge/Vite-646cff?style=for-the-badge&logo=vite&logoColor=white)](https://vite.dev/)
+[![Vercel](https://img.shields.io/badge/Deployed%20on-Vercel-000?style=for-the-badge&logo=vercel&logoColor=white)](https://vercel.com/)
+
+</div>
+
+![Ecommerce Admin Dashboard preview](docs/preview.png)
+
+## Overview
+
+This is a portfolio-ready admin dashboard for managing a small ecommerce storefront. It demonstrates protected routing, mock authentication, product CRUD flows, order views, dashboard metrics, chart visualization, and API integration patterns that can be deployed as a full demo on Vercel.
+
+## Highlights
+
+- Login flow with mock credentials and route guards
+- Dashboard overview with revenue metrics, product summaries, order cards, and ECharts visualization
+- Product management table with search, pagination, create, update, and delete actions
+- Order management page for fulfillment-style review
+- Role-aware routing using values stored in `localStorage`
+- Axios request wrapper that switches between local API and Vercel `/api`
+- Vercel serverless function that mirrors the local mock API endpoints
 
 ## Tech Stack
 
-- Vue 3
-- TypeScript
-- Vite
-- Element Plus
-- Pinia
-- Axios
-- ECharts
+| Area | Tools |
+| --- | --- |
+| Framework | Vue 3, TypeScript |
+| UI | Element Plus, custom dashboard CSS |
+| State / Routing | Pinia, Vue Router |
+| Data / API | Axios, Vercel Serverless Functions |
+| Charts | ECharts |
+| Build / Deploy | Vite, vue-tsc, Vercel |
 
-## Getting Started
+## Demo
+
+- Live site: [ecommerce-admin-dashboard-neon.vercel.app](https://ecommerce-admin-dashboard-neon.vercel.app)
+- Repository: [github.com/ErrineZh/ecommerce-admin-dashboard](https://github.com/ErrineZh/ecommerce-admin-dashboard)
+
+## Run Locally
 
 Install dependencies:
 
@@ -29,56 +52,61 @@ Install dependencies:
 npm install
 ```
 
-Start the frontend in development mode:
+Start the Vue app:
 
 ```bash
 npm run dev
 ```
 
-## API Behavior
-
-In local development, the frontend uses:
+For local API behavior, run a compatible mock backend on:
 
 ```text
 http://localhost:3000
 ```
 
-This works with a local PHP server such as:
+The app automatically uses `/api` in production, so the Vercel deployment works without a separate PHP server.
 
-```bash
-php -S localhost:3000
-```
+## API Routes
 
-In production, the frontend automatically sends requests to the deployed Vercel API:
+The deployed mock API lives in `api/index.ts` and supports the same dashboard flows used by the UI:
 
-```text
-/api
-```
+| Endpoint Path | Purpose |
+| --- | --- |
+| `login` | Mock user login |
+| `products` | Product list |
+| `products-add` | Create product |
+| `products-update` | Update product |
+| `products-delete` | Delete product |
+| `orders` | Order list |
 
-The Vercel function lives in `api/index.ts` and mirrors the mock endpoints used during development.
-
-## Build
-
-Create a production build with:
+## Production Build
 
 ```bash
 npm run build
 ```
 
-## Deployment
+Preview the production build:
 
-This project can be deployed directly to Vercel.
+```bash
+npm run preview
+```
 
-After pushing the repository to GitHub:
+## Project Structure
 
-1. Import the repository into Vercel.
-2. Use the default Vite build settings.
-3. Deploy the project.
-
-The frontend and the mock API will be deployed together, so the online login and product pages can work without the local PHP backend.
+```text
+api/
+  index.ts            Vercel serverless mock API
+src/
+  api/                Axios API modules
+  components/         Shared dashboard components
+  layout/             Main admin shell
+  router/             Protected routes and guards
+  stores/             Pinia state
+  views/              Login, dashboard, products, orders
+docs/
+  preview.png         README preview image
+```
 
 ## Notes
 
-- The current backend is mock data intended for demos and portfolio use.
-- Data created through the Vercel function is not persistent storage.
-- For production-grade behavior, connect the project to a real database and backend service.
+This project uses mock data for portfolio demonstration. For production use, connect the API layer to persistent storage, replace mock authentication with a real identity provider, and harden validation on all write endpoints.
