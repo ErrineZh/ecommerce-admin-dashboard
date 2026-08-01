@@ -43,6 +43,8 @@ This is a portfolio-ready admin dashboard for managing a small ecommerce storefr
 
 - Live site: [ecommerce-admin-dashboard-neon.vercel.app](https://ecommerce-admin-dashboard-neon.vercel.app)
 - Repository: [github.com/ErrineZh/ecommerce-admin-dashboard](https://github.com/ErrineZh/ecommerce-admin-dashboard)
+- Demo username: `admin`
+- Demo password: `admin123`
 
 ## Run Locally
 
@@ -72,7 +74,7 @@ The deployed mock API lives in `api/index.ts` and supports the same dashboard fl
 
 | Endpoint Path | Purpose |
 | --- | --- |
-| `login` | Mock user login |
+| `login` | Mock admin login used by the demo account |
 | `products` | Product list |
 | `products-add` | Create product |
 | `products-update` | Update product |

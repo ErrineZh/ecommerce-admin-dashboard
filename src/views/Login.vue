@@ -5,6 +5,20 @@
       <h1>Welcome back</h1>
       <p class="subtitle">Sign in to manage your store dashboard.</p>
 
+      <div class="demo-credentials" aria-label="Demo account credentials">
+        <div>
+          <span class="demo-label">Demo account</span>
+          <p>Use this account to explore the dashboard.</p>
+        </div>
+        <div class="credential-list">
+          <span>Username <code>{{ demoCredentials.username }}</code></span>
+          <span>Password <code>{{ demoCredentials.password }}</code></span>
+        </div>
+        <el-button class="demo-button" type="primary" plain @click="fillDemoCredentials">
+          Use demo account
+        </el-button>
+      </div>
+
       <el-form ref="formRef" :model="form" :rules="rules" label-position="top">
         <el-form-item label="Username" prop="username">
           <el-input v-model="form.username" placeholder="Enter username" />
@@ -40,12 +54,22 @@ const form = reactive({
   password: '',
 })
 
+const demoCredentials = {
+  username: 'admin',
+  password: 'admin123',
+}
+
 const rules = {
   username: [{ required: true, message: 'Username required', trigger: 'blur' }],
   password: [{ required: true, message: 'Password required', trigger: 'blur' }],
 }
 
 const loading = ref(false)
+
+const fillDemoCredentials = () => {
+  form.username = demoCredentials.username
+  form.password = demoCredentials.password
+}
 
 const handleLogin = () => {
   formRef.value.validate(async (valid: boolean) => {
@@ -107,9 +131,61 @@ h1 {
 }
 
 .subtitle {
-  margin: 0 0 30px;
+  margin: 0 0 18px;
   color: #697792;
   font-size: 14px;
+}
+
+.demo-credentials {
+  display: grid;
+  gap: 13px;
+  margin-bottom: 28px;
+  padding: 16px;
+  border: 1px solid #e6e1ff;
+  border-radius: 14px;
+  background: #f8f6ff;
+}
+
+.demo-label {
+  color: #7058ff;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.7px;
+  text-transform: uppercase;
+}
+
+.demo-credentials p {
+  margin: 5px 0 0;
+  color: #697792;
+  font-size: 13px;
+}
+
+.credential-list {
+  display: grid;
+  gap: 8px;
+  color: #34405f;
+  font-size: 13px;
+}
+
+.credential-list span {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.credential-list code {
+  padding: 4px 8px;
+  border-radius: 8px;
+  background: #fff;
+  color: #101c3e;
+  font-family: inherit;
+  font-weight: 700;
+  box-shadow: inset 0 0 0 1px #e4e8f3;
+}
+
+.demo-button {
+  width: 100%;
 }
 
 .login-button {
